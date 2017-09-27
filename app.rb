@@ -25,3 +25,15 @@ get '/recipes/:id' do
   @instructions = @recipe.instructions
   erb(:recipes)
 end
+
+patch('/recipes/:id/edit') do
+  @recipe = Recipe.find(params[:id])
+  @recipe.update({title: params["recipe_title"], ingredients: params["ingredients"], instructions: params["instructions"]})
+  redirect "/recipes/#{@recipe.id}"
+end
+
+delete('/recipes/:id/delete') do
+  @recipe = Recipe.find(params[:id])
+  @recipe.delete
+  redirect "/"
+end
