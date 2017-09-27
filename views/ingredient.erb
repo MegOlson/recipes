@@ -1,3 +1,4 @@
+<h2><%= @ingredient.name %></h2>
 
 <form class="" action="/ingredients/<%= @ingredient.id %>/edit" method="post">
   <input type="hidden" name="_method" value="patch">
@@ -5,7 +6,7 @@
     <label for="ingredients">Ingredients</label>
     <input id="ingredients" type="text" name="ingredients" >
   </div>
-  <button type="submit" name="button" class="btn">Update ingredients</button>
+  <button type="submit" name="button" class="btn">Update ingredient</button>
 </form>
 <br>
 <a href="/">Home</a>

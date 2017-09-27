@@ -6,16 +6,31 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 get '/' do
   @recipes = Recipe.all
+  @tags = Category.all
   erb(:index)
 end
 
 post '/recipe' do
-  @recipes = Recipe.all
   recipe_title = params["recipe_title"]
   instructions = params["instructions"]
-  @recipe = Recipe.new({title: recipe_title, instructions: instructions})
-  @recipe.save
+  if !recipe_title.empty? && !instructions.empty?
+    @recipe = Recipe.new({title: recipe_title, instructions: instructions})
+    @recipe.save
+  end
+  @recipes = Recipe.all
+  @tags = Category.all
   erb(:index)
+end
+
+post '/tag' do
+  tag_name = params["tag"]
+  if !tag_name.empty?
+    tag = Category.new({tag: tag_name})
+    tag.save
+  end
+  @recipes = Recipe.all
+  @tags = Category.all
+  redirect "/"
 end
 
 get '/recipes/:id' do
@@ -33,6 +48,23 @@ post('/ingredient') do
   @recipe.ingredients.push(@ingredient)
   @ingredients = @recipe.ingredients
   redirect "/recipes/#{@recipe.id}"
+end
+
+get '/tags/:id' do
+  @tag = Category.find(params[:id])
+  erb(:tag)
+end
+
+patch('/tags/:id/edit') do
+  @tag = Category.find(params[:id])
+  @tag.update({tag: params["tag"]})
+  redirect "/tags/#{@tag.id}"
+end
+
+delete('/tags/:id/delete') do
+  @tag = Category.find(params[:id])
+  @tag.delete
+  redirect "/"
 end
 
 patch('/recipes/:id/edit/title') do
@@ -55,9 +87,8 @@ end
 
 get('/ingredients/:id') do
   @ingredient = Ingredient.find(params[:id])
-erb(:ingredient)
+  erb(:ingredient)
 end
-
 
 patch('/ingredients/:id/edit') do
   @ingredient = Ingredient.find(params[:id])
