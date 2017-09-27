@@ -1,57 +1,38 @@
+
+    <h2><%= @recipe.title %> (<%= @recipe.rating %>)</h2>
+
+<form class="form-group" action="/ingredient" method="post">
+  <input type="hidden" name="recipe_id" value="<%= @recipe.id %>" class="form-control">
+  <div class="form-group" >
+    <label for="ingredient">Add Ingredient</label>
+    <input type="text" name="ingredient">
+  </div>
+  <button type="submit" name="button" class='btn'>Add Ingredient</button>
+</form>
+
+<% if @ingredients.any? %>
+  <h4>Ingredients:</h4>
+  <% @ingredients.each do |ingredient| %>
+    <ul>
+      <li><a href="/ingredients/<%= ingredient.id %>"> <%= ingredient.name %> </a></li>
+    </ul>
+  <% end %>
+<% else %>
+  <p>There are no ingredients yet.</p>
+<% end %>
+
+  <h4>Instructions:</h4>
+  <p><%= @instructions %></p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <div class="row">
-  <div class="col-md-6">
-    <h2><%= @recipe.title %><%= @recipe.rating %></h2>
-  </div>
-  <div class="col-md-6">
-    <form class="form-group" action="/recipes/<%= @recipe.id %>/delete" method="post">
-      <div class="form-group">
-        <input type="hidden" name="_method" value="delete" class="form-control">
-      </div>
-      <button type="submit" name="button" class="btn" id="delete">Delete Recipe</button>
-    </form>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6">
-    <form class="form-group" action="/ingredient" method="post">
-
-      <input type="hidden" name="recipe_id" value="<%= @recipe.id %>" class="form-control">
-      <div class="form-group" >
-        <label for="ingredient">Add Ingredient</label>
-        <input type="text" name="ingredient">
-      </div>
-      <button type="submit" name="button" class='btn'>Add Ingredient</button>
-    </form>
-
-    <% if @ingredients.any? %>
-      <h4>Ingredients:</h4>
-      <% @ingredients.each do |ingredient| %>
-        <ul>
-          <li><a href="/ingredients/<%= ingredient.id %>"> <%= ingredient.name %> </a></li>
-        </ul>
-      <% end %>
-    <% else %>
-      <p>There are no ingredients yet.</p>
-    <% end %>
-
-  </div>
-  <div class="col-md-6">
-    <h4>Instructions: <%= @instructions %></h4>
-  </div>
-</div>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<div class="row">
-  <div class="col-md-4">
+  <div class="col-md-3">
     <form class="" action="/recipes/<%= @recipe.id %>/edit/title" method="post">
       <input type="hidden" name="_method" value="patch">
       <div class="form-group">
@@ -61,10 +42,8 @@
       <button type="submit" name="button" class="btn">Update Title</button>
     </form>
   </div>
-  <div class="col-md-4">
 
-  </div>
-  <div class="col-md-4">
+  <div class="col-md-3">
     <form class="" action="/recipes/<%= @recipe.id %>/edit/instructions" method="post">
       <input type="hidden" name="_method" value="patch">
       <div class="form-group">
@@ -74,19 +53,34 @@
       <button type="submit" name="button" class="btn">Update Instructions</button>
     </form>
   </div>
-</div>
 
-<form class="" action="/recipes/<%= @recipe.id %>/rate" method="post">
-  <label for="rate">Select the rating</label>
-  <input type="hidden" name="_method" value="patch">
-  <select id="rate" name="rate" type="text">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
-  <button type="submit" name="button" class="btn">Add Rating</button>
-</form>
+  <div class="col-md-3">
+    <form class="" action="/recipes/<%= @recipe.id %>/rate" method="post">
+      <label for="rate" id="label_rating">Select the rating</label>
+      <input type="hidden" name="_method" value="patch">
+      <select id="rate" name="rate" type="text">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <br>
+      <button type="submit" name="button" class="btn">Add Rating</button>
+    </form>
+  </div>
+
+  <div class="col-md-3">
+    <form class="form-group" action="/recipes/<%= @recipe.id %>/delete" method="post">
+      <div class="form-group">
+        <input type="hidden" name="_method" value="delete" class="form-control">
+      </div>
+      <div id="delete_msg">
+      <h5><strong>Are you sure you want to delete?</strong></h5>
+      </div>
+      <button type="submit" name="button" class="btn" id="delete">Delete Recipe</button>
+    </form>
+  </div>
+</div>
 <br>
 <a href="/">Home</a>

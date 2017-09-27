@@ -1,7 +1,16 @@
-#delete {
-  margin-left: 80%;
-}
 
 .btn {
   background-color: lightgrey;
+}
+
+/*#rate {
+  margin-top: 20px;
+}*/
+
+#label_rating {
+  margin-bottom: 20px;
+}
+
+#delete_msg {
+  margin-bottom: 20px;
 }
