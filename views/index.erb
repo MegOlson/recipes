@@ -1,0 +1,25 @@
+
+<h2>Add a Recipe:</h2>
+<form action="/recipe" method="post" class= "form-group">
+
+  <label for="recipe_title">Recipe Title</label>
+  <input id="recipe_title" type="text" name="recipe_title" >
+
+  <label for="ingredient">Ingredients</label>
+  <input id="ingredient" type="text" name="ingredient" >
+
+  <label for="instructions">Instructions</label>
+  <input id="instructions" type="text" name="instructions" >
+
+  <button type="submit" class="btn">Add Recipe</button>
+</form>
+
+<% if @recipes.any? %>
+  <% @recipes.each do |recipe| %>
+    <ul>
+      <li><a href="/recipes/ <%= recipe.id %>"> <%= recipe.title %> </a></li>
+    </ul>
+  <% end %>
+<% else %>
+  <p>There are no recipes yet.</p>
+<% end %>
