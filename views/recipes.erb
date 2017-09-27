@@ -3,7 +3,6 @@
     <h2><%= @recipe.title %></h2>
   </div>
   <div class="col-md-6">
-    <br>
     <form class="form-group" action="/recipes/<%= @recipe.id %>/delete" method="post">
       <div class="form-group">
         <input type="hidden" name="_method" value="delete" class="form-control">
@@ -15,7 +14,6 @@
 
 <div class="row">
   <div class="col-md-6">
-    <h4>Ingredients: <%= @ingredients %></h4>
     <form class="form-group" action="/ingredient" method="post">
 
       <input type="hidden" name="recipe_id" value="<%= @recipe.id %>" class="form-control">
@@ -25,6 +23,18 @@
       </div>
       <button type="submit" name="button" class='btn'>Add Ingredient</button>
     </form>
+
+    <% if @ingredients.any? %>
+      <h4>Ingredients:</h4>
+      <% @ingredients.each do |ingredient| %>
+        <ul>
+          <li><a href="/ingredients/<%= ingredient.id %>"> <%= ingredient.name %> </a></li>
+        </ul>
+      <% end %>
+    <% else %>
+      <p>There are no ingredients yet.</p>
+    <% end %>
+
   </div>
   <div class="col-md-6">
     <h4>Instructions: <%= @instructions %></h4>
