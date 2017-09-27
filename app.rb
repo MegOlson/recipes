@@ -12,9 +12,8 @@ end
 post '/recipe' do
   @recipes = Recipe.all
   recipe_title = params["recipe_title"]
-  ingredients = params["ingredients"]
   instructions = params["instructions"]
-  @recipe = Recipe.new({title: recipe_title, ingredients: ingredients, instructions: instructions})
+  @recipe = Recipe.new({title: recipe_title, instructions: instructions})
   @recipe.save
   erb(:index)
 end
@@ -26,9 +25,29 @@ get '/recipes/:id' do
   erb(:recipes)
 end
 
-patch('/recipes/:id/edit') do
+post('/ingredient') do
+  @recipe = Recipe.find(params['recipe_id'].to_i)
+  ingredient = params['ingredient']
+  @recipe.ingredients.create({ingredients: ingredient})
+  @ingredients = @recipe.ingredients
+  redirect "/recipes/#{@recipe.id}"
+end
+
+patch('/recipes/:id/edit/title') do
   @recipe = Recipe.find(params[:id])
-  @recipe.update({title: params["recipe_title"], ingredients: params["ingredients"], instructions: params["instructions"]})
+  @recipe.update({title: params["recipe_title"]})
+  redirect "/recipes/#{@recipe.id}"
+end
+
+patch('/recipes/:id/edit/ingredients') do
+  @recipe = Recipe.find(params[:id])
+  @recipe.update({ingredients: params["ingredients"]})
+  redirect "/recipes/#{@recipe.id}"
+end
+
+patch('/recipes/:id/edit/instructions') do
+  @recipe = Recipe.find(params[:id])
+  @recipe.update({instructions: params["instructions"]})
   redirect "/recipes/#{@recipe.id}"
 end
 
