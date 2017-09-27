@@ -37,6 +37,7 @@ get '/recipes/:id' do
   @recipe = Recipe.find(params[:id])
   @instructions = @recipe.instructions
   @ingredients = @recipe.ingredients
+  @rating = @recipe.rating
   erb(:recipes)
 end
 
@@ -59,11 +60,18 @@ end
 post '/recipe/add/:id' do
   @tag = Category.find(params[:id])
   @recipe = Recipe.find(params["recipe_id"])
-  if @tag.recipes
-    @recipe.categories.push(@tag)
-  end
+  @tag.recipes
+  @recipe.categories.push(@tag)
   @recipes = @tag.recipes
   erb(:tag_recipes)
+end
+
+patch('/recipes/:id/rate') do
+  @recipe = Recipe.find(params[:id])
+  rating = params["rate"]
+  @recipe.rating = rating
+  @recipe.save
+  redirect "/recipes/#{@recipe.id}"
 end
 
 patch('/tags/:id/edit') do

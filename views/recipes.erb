@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-6">
-    <h2><%= @recipe.title %></h2>
+    <h2><%= @recipe.title %><%= @recipe.rating %></h2>
   </div>
   <div class="col-md-6">
     <form class="form-group" action="/recipes/<%= @recipe.id %>/delete" method="post">
@@ -62,7 +62,7 @@
     </form>
   </div>
   <div class="col-md-4">
-    
+
   </div>
   <div class="col-md-4">
     <form class="" action="/recipes/<%= @recipe.id %>/edit/instructions" method="post">
@@ -75,5 +75,18 @@
     </form>
   </div>
 </div>
+
+<form class="" action="/recipes/<%= @recipe.id %>/rate" method="post">
+  <label for="rate">Select the rating</label>
+  <input type="hidden" name="_method" value="patch">
+  <select id="rate" name="rate" type="text">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+  <button type="submit" name="button" class="btn">Add Rating</button>
+</form>
 <br>
 <a href="/">Home</a>
