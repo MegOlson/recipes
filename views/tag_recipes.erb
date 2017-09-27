@@ -1,0 +1,12 @@
+
+<h3> <%= @tag.tag %> Recipes:</h3>
+<% if @recipes.any? %>
+  <% @recipes.each do |recipe| %>
+    <ul>
+      <li><a href="/recipes/<%= recipe.id %>"><%= recipe.title %></a></li>
+    </ul>
+  <% end %>
+<% else %>
+  <p>There are no recipes yet.</p>
+<% end %>
+<a href="/">Home</a>

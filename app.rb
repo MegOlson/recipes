@@ -52,7 +52,18 @@ end
 
 get '/tags/:id' do
   @tag = Category.find(params[:id])
+  @recipe_list = Recipe.all
   erb(:tag)
+end
+
+post '/recipe/add/:id' do
+  @tag = Category.find(params[:id])
+  @recipe = Recipe.find(params["recipe_id"])
+  if @tag.recipes
+    @recipe.categories.push(@tag)
+  end
+  @recipes = @tag.recipes
+  erb(:tag_recipes)
 end
 
 patch('/tags/:id/edit') do
@@ -94,4 +105,10 @@ patch('/ingredients/:id/edit') do
   @ingredient = Ingredient.find(params[:id])
   @ingredient.update({name: params["ingredients"]})
   redirect "/ingredients/#{@ingredient.id}"
+end
+
+delete("/ingredients/:id/delete") do
+  @ingredient = Ingredient.find(params[:id])
+  @ingredient.delete
+  redirect "/"
 end

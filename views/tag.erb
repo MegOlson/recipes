@@ -9,6 +9,16 @@
   <button type="submit" name="button" class="btn">Update Tag</button>
 </form>
 
+<form class="" action="/recipe/add/<%= @tag.id %>" method="post">
+  <label for="recipe_list">Select a recipe to assign to tag.</label>
+  <select id="recipe_list" name="recipe_id" type="text">
+    <% @recipe_list.each do |recipe| %>
+      <option value="<%=recipe.id %>"> <%= recipe.title %></option>
+    <% end %>
+  </select>
+  <button type="submit" name="button" class="btn">Add Recipe</button>
+</form>
+
 
 <form class="" action="/tags/<%= @tag.id %>/delete" method="post">
   <input type="hidden" name="_method" value="delete">

@@ -1,4 +1,11 @@
-<h2><%= @ingredient.name %></h2>
+<h2><%= @ingredient.name %>
+  <form class="form-group" action="/ingredients/<%= @ingredient.id %>/delete" method="post">
+    <div class="form-group">
+      <input type="hidden" name="_method" value="delete" class="form-control">
+    </div>
+    <button type="submit" name="button" class="btn">Delete Ingredient</button>
+  </form>
+</h2>
 
 <form class="" action="/ingredients/<%= @ingredient.id %>/edit" method="post">
   <input type="hidden" name="_method" value="patch">
@@ -9,4 +16,5 @@
   <button type="submit" name="button" class="btn">Update ingredient</button>
 </form>
 <br>
+
 <a href="/">Home</a>
