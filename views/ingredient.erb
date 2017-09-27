@@ -1,0 +1,11 @@
+
+<form class="" action="/ingredients/<%= @ingredient.id %>/edit" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <label for="ingredients">Ingredients</label>
+    <input id="ingredients" type="text" name="ingredients" >
+  </div>
+  <button type="submit" name="button" class="btn">Update ingredients</button>
+</form>
+<br>
+<a href="/">Home</a>

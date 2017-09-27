@@ -41,12 +41,6 @@ patch('/recipes/:id/edit/title') do
   redirect "/recipes/#{@recipe.id}"
 end
 
-# patch('/recipes/:id/edit/ingredients') do
-#   @recipe = Recipe.find(params[:id])
-#   @ingredients.update({ingredients: params["ingredients"]})
-#   redirect "/recipes/#{@recipe.id}"
-# end
-
 patch('/recipes/:id/edit/instructions') do
   @recipe = Recipe.find(params[:id])
   @recipe.update({instructions: params["instructions"]})
@@ -57,4 +51,16 @@ delete('/recipes/:id/delete') do
   @recipe = Recipe.find(params[:id])
   @recipe.delete
   redirect "/"
+end
+
+get('/ingredients/:id') do
+  @ingredient = Ingredient.find(params[:id])
+erb(:ingredient)
+end
+
+
+patch('/ingredients/:id/edit') do
+  @ingredient = Ingredient.find(params[:id])
+  @ingredient.update({name: params["ingredients"]})
+  redirect "/ingredients/#{@ingredient.id}"
 end
