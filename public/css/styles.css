@@ -14,3 +14,17 @@
 #delete_msg {
   margin-bottom: 20px;
 }
+
+#edit {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#tag_delete {
+margin-bottom: 20px;
+}
+
+.well {
+text-align: center;
+}

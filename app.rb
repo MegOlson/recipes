@@ -5,7 +5,7 @@ require 'pry'
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 get '/' do
-  @recipes = Recipe.all
+  @recipes = Recipe.order('rating DESC').all
   @tags = Category.all
   erb(:index)
 end
@@ -17,7 +17,7 @@ post '/recipe' do
     @recipe = Recipe.new({title: recipe_title, instructions: instructions})
     @recipe.save
   end
-  @recipes = Recipe.all
+  @recipes = Recipe.order('rating DESC').all
   @tags = Category.all
   erb(:index)
 end
@@ -28,7 +28,7 @@ post '/tag' do
     tag = Category.new({tag: tag_name})
     tag.save
   end
-  @recipes = Recipe.all
+  @recipes = Recipe.order('rating DESC').all
   @tags = Category.all
   redirect "/"
 end
