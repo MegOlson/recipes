@@ -1,10 +1,13 @@
 
 
-
-<% @found_recipes.each do |recipe| %>
-  <ul>
-    <li><a href="/recipes/<%= recipe.id %>"><%= recipe.title %></a></li>
-  </ul>
-<% end %>
-
-<a href="/">Home</a>
+<center><div class="panel panel-default" id="panel">
+  <div class="panel-heading">
+    <h3>Recipes:</h3>
+  </div>
+  <div class="panel-body">
+    <% @found_recipes.each do |recipe| %>
+      <p><a href="/recipes/<%= recipe.id %>"><%= recipe.title %></a></p>
+    <% end %>
+  </div>
+</div>
+<a href="/">Home</a></center>

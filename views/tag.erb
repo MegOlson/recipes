@@ -10,8 +10,10 @@
   <button type="submit" name="button" class="btn">Add Recipe</button>
 </form>
 
+<br>
+
 <div class="row">
-  <div class="col-md-5">
+  <div class="col-md-6" id="edit_box">
     <div class="row">
       <div class="panel panel-default" id="edit">
         <div class="panel-heading">
@@ -29,17 +31,16 @@
             </form>
           </div>
 
-
-            <form class="" action="/tags/<%= @tag.id %>/delete" method="post" id="tag_delete">
-              <input type="hidden" name="_method" value="delete">
-              <div class="form-group">
-                <input type="hidden" name="_method" value="delete" class="form-control">
-              </div>
-              <center>
-                <h5>Are you sure you want to delete?</h5>
-                <br>
-              <button type="submit" name="button" class="btn"> Delete Tag</button></center>
-            </form>
+          <form class="" action="/tags/<%= @tag.id %>/delete" method="post" id="tag_delete">
+            <input type="hidden" name="_method" value="delete">
+            <div class="form-group">
+              <input type="hidden" name="_method" value="delete" class="form-control">
+            </div>
+            <center>
+              <h5>Are you sure you want to delete?</h5>
+              <br>
+            <button type="submit" name="button" class="btn"> Delete Tag</button></center>
+          </form>
         </div>
       </div>
     </div>

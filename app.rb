@@ -57,10 +57,12 @@ end
 post('/ingredient') do
   @recipe = Recipe.find(params['recipe_id'])
   ingredient = params['ingredient']
-  @ingredient = Ingredient.new({name: ingredient})
-  @ingredient.save
-  @recipe.ingredients.push(@ingredient)
-  @ingredients = @recipe.ingredients
+  new_ingredient = Ingredient.find_or_initialize_by(name: ingredient)
+  if new_ingredient.id && @recipe.ingredients.include?(new_ingredient)
+  else
+    new_ingredient.save
+    @recipe.ingredients.push(new_ingredient)
+  end
   redirect "/recipes/#{@recipe.id}"
 end
 

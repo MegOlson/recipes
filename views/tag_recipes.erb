@@ -1,13 +1,15 @@
-<div class="well">
-  <h3> <%= @tag.tag %> Recipes:</h3>
-  <% if @recipes.any? %>
-    <% @recipes.each do |recipe| %>
-      <ul>
-        <li><a href="/recipes/<%= recipe.id %>"><%= recipe.title %></a></li>
-      </ul>
+<center><div class="panel panel-default" id="panel">
+  <div class="panel-heading">
+    <h3> <%= @tag.tag %> Recipes:</h3>
+  </div>
+  <div class="panel-body">
+    <% if @recipes.any? %>
+      <% @recipes.each do |recipe| %>
+          <p><a href="/recipes/<%= recipe.id %>"><%= recipe.title %></a></p>
+      <% end %>
+    <% else %>
+      <p>There are no recipes yet.</p>
     <% end %>
-  <% else %>
-    <p>There are no recipes yet.</p>
-  <% end %>
+  </div>
 </div>
-<a href="/">Home</a>
+<a href="/">Home</a></center>

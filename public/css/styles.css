@@ -3,10 +3,6 @@
   background-color: lightgrey;
 }
 
-/*#rate {
-  margin-top: 20px;
-}*/
-
 #label_rating {
   margin-bottom: 20px;
 }
@@ -15,10 +11,8 @@
   margin-bottom: 20px;
 }
 
-#edit {
-  position: absolute;
-  top: 0;
-  right: 0;
+#edit_box {
+  float: left;
 }
 
 #tag_delete {
@@ -27,4 +21,9 @@ margin-bottom: 20px;
 
 .well {
 text-align: center;
+}
+
+#panel {
+  text-align: center;
+  width: 50%;
 }
