@@ -57,5 +57,21 @@
         <% end %>
       </div>
     </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Search for recipes:</h3>
+      </div>
+      <div class="panel-body">
+
+        <form action="/search" method="post" class= "form-group">
+
+          <label for="ingredients">Ingredient</label>
+          <input id="ingredients" type="text" name="ingredients" >
+
+          <button type="submit" class="btn">Find Recipes</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>

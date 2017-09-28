@@ -1,0 +1,10 @@
+
+
+
+<% @found_recipes.each do |recipe| %>
+  <ul>
+    <li><a href="/recipes/<%= recipe.id %>"><%= recipe.title %></a></li>
+  </ul>
+<% end %>
+
+<a href="/">Home</a>

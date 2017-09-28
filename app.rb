@@ -22,6 +22,19 @@ post '/recipe' do
   erb(:index)
 end
 
+post '/search' do
+  ingredient = params["ingredients"]
+  @ingredient = Ingredient.find_by_name(ingredient)
+  @found_recipes = []
+  recipes = Recipe.all
+  recipes.each do |recipe|
+    if recipe.ingredients.include?(@ingredient)
+      @found_recipes.push(recipe)
+    end
+  end
+  erb(:recipes_searched)
+end
+
 post '/tag' do
   tag_name = params["tag"]
   if !tag_name.empty?
